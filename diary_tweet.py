@@ -5,7 +5,7 @@ import private
 
 file_path = "file"
 # Twitter Markov Bot
-def generate_model(file_path):
+def generate_diary_entry():
     '''read in .txt file, build markov model'''
     # Get raw text as string.
     with open(file_path) as f:
@@ -13,14 +13,18 @@ def generate_model(file_path):
 
     # Build the model.
     text_model = markovify.Text(text)
-
-    return text_model
-
-text_model = generate_model(file_path)
-
-def tweet(n):
-    '''create tweet and send to the interent for everyone to see'''
     diary_entry = text_model.make_short_sentence(140)
+
+    hashtag = "#teenageagnst"
+
+    diary_entry = diary_entry + hashtag
+
+    return diary_entry
+
+
+
+def tweet():
+    '''create tweet and send to the interent for everyone to see'''
 
     auth = tweepy.OAuthHandler(private.CONSUMER_KEY,
                                private.CONSUMER_SECRET)  # (CONSUMER_KEY, CONSUMER_SECRET)
